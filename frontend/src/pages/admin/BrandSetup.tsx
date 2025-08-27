@@ -4,13 +4,13 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Badge } from '@/components/ui/badge';
-import { 
-  Plus, 
-  Search, 
-  Download, 
-  Edit, 
-  Trash2, 
-  Eye, 
+import {
+  Plus,
+  Search,
+  Download,
+  Edit,
+  Trash2,
+  Eye,
   EyeOff,
   Star,
   StarOff,
@@ -19,6 +19,7 @@ import {
   Phone,
   MapPin
 } from 'lucide-react';
+import { BACKEND_BASE_URL } from '../../lib/utils';
 
 interface Brand {
   id: number;
@@ -62,7 +63,7 @@ const BrandSetup: React.FC = () => {
 
   const fetchBrands = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/brands');
+      const response = await fetch(`${BACKEND_BASE_URL}/api/brands`);
       if (response.ok) {
         const data = await response.json();
         setBrands(data.data?.brands || []);
@@ -136,7 +137,7 @@ const BrandSetup: React.FC = () => {
           formDataToSend.append('logo', logoFile);
         }
 
-        const response = await fetch(`http://localhost:5000/api/brands/${editingBrand.id}`, {
+        const response = await fetch(`${BACKEND_BASE_URL}/api/brands/${editingBrand.id}`, {
           method: 'PUT',
           body: formDataToSend
         });
@@ -163,7 +164,7 @@ const BrandSetup: React.FC = () => {
           formDataToSend.append('logo', logoFile);
         }
 
-        const response = await fetch('http://localhost:5000/api/brands', {
+        const response = await fetch(`${BACKEND_BASE_URL}/api/brands`, {
           method: 'POST',
           body: formDataToSend
         });
@@ -195,7 +196,7 @@ const BrandSetup: React.FC = () => {
       country: brand.country || '',
       founded_year: brand.founded_year?.toString() || ''
     });
-    
+
     if (brand.logo) {
       setLogoPreview(brand.logo);
     } else {
@@ -207,7 +208,7 @@ const BrandSetup: React.FC = () => {
   const handleDelete = async (id: number) => {
     if (confirm('Are you sure you want to delete this brand?')) {
       try {
-        const response = await fetch(`http://localhost:5000/api/brands/${id}`, {
+        const response = await fetch(`${BACKEND_BASE_URL}/api/brands/${id}`, {
           method: 'DELETE'
         });
 
@@ -228,7 +229,7 @@ const BrandSetup: React.FC = () => {
       const brand = brands.find(b => b.id === id);
       if (!brand) return;
 
-      const response = await fetch(`http://localhost:5000/api/brands/${id}`, {
+      const response = await fetch(`${BACKEND_BASE_URL}/api/brands/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -254,7 +255,7 @@ const BrandSetup: React.FC = () => {
       const brand = brands.find(b => b.id === id);
       if (!brand) return;
 
-      const response = await fetch(`http://localhost:5000/api/brands/${id}`, {
+      const response = await fetch(`${BACKEND_BASE_URL}/api/brands/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -271,7 +272,7 @@ const BrandSetup: React.FC = () => {
       }
     } catch (error) {
       console.error('Error toggling brand featured status:', error);
-        alert('Error toggling brand featured status');
+      alert('Error toggling brand featured status');
     }
   };
 
@@ -401,8 +402,8 @@ const BrandSetup: React.FC = () => {
                     </td>
                     <td className="p-3">
                       {brand.logo ? (
-                        <img 
-                          src={brand.logo} 
+                        <img
+                          src={brand.logo}
                           alt={brand.name}
                           className="w-16 h-16 rounded-lg object-cover border border-gray-200"
                           onError={(e) => {
@@ -432,14 +433,12 @@ const BrandSetup: React.FC = () => {
                       <div className="flex items-center">
                         <button
                           onClick={() => toggleStatus(brand.id)}
-                          className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
-                            brand.is_active ? 'bg-blue-600' : 'bg-gray-200'
-                          }`}
+                          className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${brand.is_active ? 'bg-blue-600' : 'bg-gray-200'
+                            }`}
                         >
                           <span
-                            className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
-                              brand.is_active ? 'translate-x-6' : 'translate-x-1'
-                            }`}
+                            className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${brand.is_active ? 'translate-x-6' : 'translate-x-1'
+                              }`}
                           />
                         </button>
                         <span className="ml-2 text-sm text-gray-600">
@@ -493,14 +492,14 @@ const BrandSetup: React.FC = () => {
                 <div className="mt-2">
                   {logoPreview ? (
                     <div className="flex items-center space-x-4">
-                      <img 
-                        src={logoPreview} 
-                        alt="Logo preview" 
+                      <img
+                        src={logoPreview}
+                        alt="Logo preview"
                         className="w-20 h-20 rounded-lg object-cover border"
                       />
-                      <Button 
-                        type="button" 
-                        variant="outline" 
+                      <Button
+                        type="button"
+                        variant="outline"
                         onClick={removeLogo}
                         className="text-red-600 hover:text-red-700"
                       >
@@ -512,16 +511,16 @@ const BrandSetup: React.FC = () => {
                       <label htmlFor="logo" className="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100">
                         <div className="flex flex-col items-center justify-center pt-5 pb-6">
                           <svg className="w-8 h-8 mb-4 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
-                            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 9-7 7-7-7m14-5-7 7-7-7M2 1h16a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1Z"/>
+                            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 9-7 7-7-7m14-5-7 7-7-7M2 1h16a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1Z" />
                           </svg>
                           <p className="mb-2 text-sm text-gray-500"><span className="font-semibold">Click to upload</span> or drag and drop</p>
                           <p className="text-xs text-gray-500">PNG, JPG, JPEG up to 2MB</p>
                         </div>
-                        <input 
-                          id="logo" 
-                          name="logo" 
-                          type="file" 
-                          className="hidden" 
+                        <input
+                          id="logo"
+                          name="logo"
+                          type="file"
+                          className="hidden"
                           accept="image/*"
                           onChange={handleLogoChange}
                         />
