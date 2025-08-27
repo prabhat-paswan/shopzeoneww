@@ -1,0 +1,4 @@
+Product Code,Name,Sku Id,Selling Price,Category ID,Sub Category ID,Store ID
+PROD001,Test Product 1,SKU001,100,1,1,ce32fe90-7eaa-11f0-a328-f5704f3e47ab
+PROD002,Test Product 2,SKU002,200,1,1,ce32fe90-7eaa-11f0-a328-f5704f3e47ab
+PROD003,Test Product 3,SKU003,300,1,1,ce32fe90-7eaa-11f0-a328-f5704f3e47ab

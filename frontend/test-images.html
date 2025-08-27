@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brand Images Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .image-container { margin: 20px 0; padding: 20px; border: 1px solid #ccc; border-radius: 8px; }
+        img { max-width: 200px; height: auto; border: 1px solid #ddd; border-radius: 4px; }
+        .status { margin-top: 10px; font-weight: bold; }
+        .success { color: green; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <h1>Brand Images Test</h1>
+    <p>Testing if brand images load correctly from backend...</p>
+
+    <div class="image-container">
+        <h3>ShopZeo Logo</h3>
+        <img src="http://localhost:5000/uploads/brands/brand-1755882682399-606248210.jpeg" 
+             alt="ShopZeo" 
+             onload="this.nextElementSibling.textContent='✅ Image loaded successfully'; this.nextElementSibling.className='status success'"
+             onerror="this.nextElementSibling.textContent='❌ Failed to load image'; this.nextElementSibling.className='status error'">
+        <div class="status">Loading...</div>
+    </div>
+
+    <div class="image-container">
+        <h3>Satisfaction Badge</h3>
+        <img src="http://localhost:5000/uploads/brands/brand-1755883618471-749353359.jpg" 
+             alt="Satisfaction Badge" 
+             onload="this.nextElementSibling.textContent='✅ Image loaded successfully'; this.nextElementSibling.className='status success'"
+             onerror="this.nextElementSibling.textContent='❌ Failed to load image'; this.nextElementSibling.className='status error'">
+        <div class="status">Loading...</div>
+    </div>
+
+    <div class="image-container">
+        <h3>Dream Kraft Logo</h3>
+        <img src="http://localhost:5000/uploads/brands/brand-1755983730672-929170786.jpg" 
+             alt="Dream Kraft" 
+             onload="this.nextElementSibling.textContent='✅ Image loaded successfully'; this.nextElementSibling.className='status success'"
+             onerror="this.nextElementSibling.textContent='❌ Failed to load image'; this.nextElementSibling.className='status error'">
+        <div class="status">Loading...</div>
+    </div>
+
+    <div class="image-container">
+        <h3>Apple Logo</h3>
+        <img src="http://localhost:5000/uploads/brands/brand-1756002068669-187553850.png" 
+             alt="Apple" 
+             onload="this.nextElementSibling.textContent='✅ Image loaded successfully'; this.nextElementSibling.className='status success'"
+             onerror="this.nextElementSibling.textContent='❌ Failed to load image'; this.nextElementSibling.className='status error'">
+        <div class="status">Loading...</div>
+    </div>
+
+    <script>
+        console.log('Testing brand images...');
+        
+        // Check if all images loaded
+        setTimeout(() => {
+            const images = document.querySelectorAll('img');
+            let loadedCount = 0;
+            let errorCount = 0;
+            
+            images.forEach((img, index) => {
+                if (img.complete && img.naturalHeight !== 0) {
+                    loadedCount++;
+                    console.log(`Image ${index + 1} loaded successfully`);
+                } else {
+                    errorCount++;
+                    console.log(`Image ${index + 1} failed to load`);
+                }
+            });
+            
+            console.log(`\n📊 Results: ${loadedCount} loaded, ${errorCount} failed`);
+            
+            if (errorCount === 0) {
+                console.log('🎉 All images loaded successfully!');
+            } else {
+                console.log('⚠️ Some images failed to load. Check the errors above.');
+            }
+        }, 2000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,182 @@
+{
+  "success": true,
+  "data": [
+    {
+      "id": 1,
+      "name": "Men's Fashion",
+      "slug": "mens-fashion",
+      "image": "/uploads/categories/mens-fashion.jpg",
+      "icon": "👔",
+      "subcategories": [
+        {
+          "id": 1,
+          "name": "Men's Watches",
+          "slug": "mens-watches",
+          "items": [
+            "Fashion Watches",
+            "Sports Watches", 
+            "Business Watches",
+            "Smart Watches"
+          ]
+        },
+        {
+          "id": 2,
+          "name": "Men's Clothing",
+          "slug": "mens-clothing",
+          "items": [
+            "Shirts",
+            "T-Shirts",
+            "Polo Shirts",
+            "Hoodies",
+            "Sweaters",
+            "Jeans",
+            "Pants",
+            "Socks & Hosiery"
+          ]
+        },
+        {
+          "id": 3,
+          "name": "Men's Footwear",
+          "slug": "mens-footwear",
+          "items": [
+            "Shoes",
+            "Boots",
+            "Sneakers",
+            "Loafers & Slip-Ons",
+            "Outdoor Shoes",
+            "Sandals",
+            "Slippers"
+          ]
+        },
+        {
+          "id": 4,
+          "name": "Men's Eyewear",
+          "slug": "mens-eyewear",
+          "items": [
+            "Eyeglasses",
+            "Sunglasses",
+            "Fashion glasses"
+          ]
+        },
+        {
+          "id": 5,
+          "name": "Men's Bags & Wallets",
+          "slug": "mens-bags-wallets",
+          "items": [
+            "Fashion Backpacks",
+            "Business Bags"
+          ]
+        },
+        {
+          "id": 6,
+          "name": "Men's Jewelry",
+          "slug": "mens-jewelry",
+          "items": [
+            "Bracelets",
+            "Necklaces"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Women's Fashion",
+      "slug": "womens-fashion",
+      "image": "/uploads/categories/womens-fashion.jpg",
+      "icon": "👗",
+      "subcategories": [
+        {
+          "id": 7,
+          "name": "Women's Clothing",
+          "slug": "womens-clothing",
+          "items": [
+            "Dresses",
+            "Tops",
+            "Bottoms",
+            "Outerwear",
+            "Lingerie"
+          ]
+        },
+        {
+          "id": 8,
+          "name": "Women's Accessories",
+          "slug": "womens-accessories",
+          "items": [
+            "Handbags",
+            "Jewelry",
+            "Scarves",
+            "Belts"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Electronics",
+      "slug": "electronics",
+      "image": "/uploads/categories/electronics.jpg",
+      "icon": "📱",
+      "subcategories": [
+        {
+          "id": 9,
+          "name": "Smartphones",
+          "slug": "smartphones",
+          "items": [
+            "Android Phones",
+            "iPhone",
+            "Budget Phones"
+          ]
+        },
+        {
+          "id": 10,
+          "name": "Laptops",
+          "slug": "laptops",
+          "items": [
+            "Gaming Laptops",
+            "Business Laptops",
+            "Student Laptops"
+          ]
+        },
+        {
+          "id": 11,
+          "name": "Audio",
+          "slug": "audio",
+          "items": [
+            "Headphones",
+            "Speakers",
+            "Earphones"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Home & Kitchen",
+      "slug": "home-kitchen",
+      "image": "/uploads/categories/home-kitchen.jpg",
+      "icon": "🏠",
+      "subcategories": [
+        {
+          "id": 12,
+          "name": "Kitchen Appliances",
+          "slug": "kitchen-appliances",
+          "items": [
+            "Blenders",
+            "Microwaves",
+            "Coffee Makers"
+          ]
+        },
+        {
+          "id": 13,
+          "name": "Home Decor",
+          "slug": "home-decor",
+          "items": [
+            "Wall Art",
+            "Cushions",
+            "Rugs"
+          ]
+        }
+      ]
+    }
+  ]
+}

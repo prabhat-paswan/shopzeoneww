@@ -1,0 +1,47 @@
+-- Create brands table
+CREATE TABLE IF NOT EXISTS `brands` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `name_ar` varchar(255) DEFAULT NULL,
+  `name_bn` varchar(255) DEFAULT NULL,
+  `name_hi` varchar(255) DEFAULT NULL,
+  `slug` varchar(255) NOT NULL,
+  `description` text DEFAULT NULL,
+  `description_ar` text DEFAULT NULL,
+  `description_bn` text DEFAULT NULL,
+  `description_hi` text DEFAULT NULL,
+  `logo` varchar(500) DEFAULT NULL,
+  `banner` varchar(500) DEFAULT NULL,
+  `image_alt_text` varchar(255) DEFAULT NULL,
+  `website` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `phone` varchar(50) DEFAULT NULL,
+  `address` text DEFAULT NULL,
+  `country` varchar(100) DEFAULT NULL,
+  `founded_year` int(4) DEFAULT NULL,
+  `is_featured` tinyint(1) DEFAULT 0,
+  `is_active` tinyint(1) DEFAULT 1,
+  `sort_order` int(11) DEFAULT 0,
+  `meta_title` varchar(255) DEFAULT NULL,
+  `meta_description` text DEFAULT NULL,
+  `meta_keywords` text DEFAULT NULL,
+  `total_products` int(11) DEFAULT 0,
+  `total_sales` decimal(15,2) DEFAULT 0.00,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uk_brand_name` (`name`),
+  UNIQUE KEY `uk_brand_slug` (`slug`),
+  KEY `idx_brand_active` (`is_active`),
+  KEY `idx_brand_featured` (`is_featured`),
+  KEY `idx_brand_sort_order` (`sort_order`),
+  KEY `idx_brand_country` (`country`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Insert sample brands
+INSERT INTO `brands` (`name`, `slug`, `description`, `country`, `is_featured`, `is_active`, `sort_order`) VALUES
+('Samsung', 'samsung', 'Leading electronics and home appliance brand', 'South Korea', 1, 1, 1),
+('LG', 'lg', 'Innovative home appliances and electronics', 'South Korea', 1, 1, 2),
+('Whirlpool', 'whirlpool', 'Trusted home appliance manufacturer', 'USA', 1, 1, 3),
+('Bosch', 'bosch', 'Premium German engineering for home appliances', 'Germany', 1, 1, 4),
+('Philips', 'philips', 'Quality lighting and home care products', 'Netherlands', 1, 1, 5);

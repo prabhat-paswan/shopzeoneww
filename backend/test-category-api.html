@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Category Hierarchy API Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .api-section {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        .api-title {
+            color: #333;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 5px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .result {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 10px 0;
+            white-space: pre-wrap;
+            font-family: monospace;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .error {
+            background: #f8d7da;
+            border-color: #f5c6cb;
+            color: #721c24;
+        }
+        .success {
+            background: #d4edda;
+            border-color: #c3e6cb;
+            color: #155724;
+        }
+    </style>
+</head>
+<body>
+    <h1>Category Hierarchy API Test</h1>
+    
+    <div class="api-section">
+        <h2 class="api-title">1. Get Category Hierarchy (Complete)</h2>
+        <p>Fetches all categories with their subcategories in hierarchical format</p>
+        <button onclick="testCategoryHierarchy()">Test Category Hierarchy</button>
+        <div id="hierarchy-result" class="result"></div>
+    </div>
+
+    <div class="api-section">
+        <h2 class="api-title">2. Get Navigation Categories</h2>
+        <p>Fetches categories optimized for navigation dropdown</p>
+        <button onclick="testNavigationCategories()">Test Navigation Categories</button>
+        <div id="navigation-result" class="result"></div>
+    </div>
+
+    <div class="api-section">
+        <h2 class="api-title">3. Get Single Category with Subcategories</h2>
+        <p>Fetches a specific category by ID with all its subcategories</p>
+        <input type="number" id="category-id" placeholder="Enter Category ID" value="1" style="padding: 8px; margin: 10px;">
+        <button onclick="testSingleCategory()">Test Single Category</button>
+        <div id="single-result" class="result"></div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:5000/api';
+
+        async function testCategoryHierarchy() {
+            const resultDiv = document.getElementById('hierarchy-result');
+            resultDiv.innerHTML = 'Loading...';
+            resultDiv.className = 'result';
+
+            try {
+                const response = await fetch(`${API_BASE}/categories/hierarchy`);
+                const data = await response.json();
+                
+                if (data.success) {
+                    resultDiv.innerHTML = JSON.stringify(data.data, null, 2);
+                    resultDiv.className = 'result success';
+                } else {
+                    resultDiv.innerHTML = `Error: ${data.message}`;
+                    resultDiv.className = 'result error';
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `Network Error: ${error.message}`;
+                resultDiv.className = 'result error';
+            }
+        }
+
+        async function testNavigationCategories() {
+            const resultDiv = document.getElementById('navigation-result');
+            resultDiv.innerHTML = 'Loading...';
+            resultDiv.className = 'result';
+
+            try {
+                const response = await fetch(`${API_BASE}/categories/navigation`);
+                const data = await response.json();
+                
+                if (data.success) {
+                    resultDiv.innerHTML = JSON.stringify(data.data, null, 2);
+                    resultDiv.className = 'result success';
+                } else {
+                    resultDiv.innerHTML = `Error: ${data.message}`;
+                    resultDiv.className = 'result error';
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `Network Error: ${error.message}`;
+                resultDiv.className = 'result error';
+            }
+        }
+
+        async function testSingleCategory() {
+            const categoryId = document.getElementById('category-id').value;
+            const resultDiv = document.getElementById('single-result');
+            resultDiv.innerHTML = 'Loading...';
+            resultDiv.className = 'result';
+
+            try {
+                const response = await fetch(`${API_BASE}/categories/${categoryId}`);
+                const data = await response.json();
+                
+                if (data.success) {
+                    resultDiv.innerHTML = JSON.stringify(data.data, null, 2);
+                    resultDiv.className = 'result success';
+                } else {
+                    resultDiv.innerHTML = `Error: ${data.message}`;
+                    resultDiv.className = 'result error';
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `Network Error: ${error.message}`;
+                resultDiv.className = 'result error';
+            }
+        }
+    </script>
+</body>
+</html>
